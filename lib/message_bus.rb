@@ -462,6 +462,7 @@ module MessageBus::Implementation
 
         @mutex.synchronize do
           raise MessageBus::BusDestroyed if @destroyed
+          @subscriptions ||= {}
           globals = @subscriptions[nil]
           locals = @subscriptions[msg.site_id] if msg.site_id
 
